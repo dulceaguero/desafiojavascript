@@ -150,10 +150,33 @@ function sumaDeArrays(array) {
   // OJO: Si el elemento dentro del array que ingresa por prop, 
   //ya es de tipo number, deben devolverlo como tal dentro del array que retornan.
   //let a = [[5, 5], 4, [10, 15], [25, 10]]. }
+  
+
+    let resultado = [];
+    for (let i = 0; i < array.length; i++) {
+      if (typeof array[i] === "number") {
+        resultado.push(array[i]);
+      } else {
+        let suma = 0;
+        for (let j = 0; j < array[i].length; j++) {
+          if (array[i][j] !== undefined) {
+            suma += array[i][j];
+          }
+        }
+        resultado.push(suma);
+      }
+    }
+    return resultado;
+  }
+
+  let a = [[5, 5], 4, [10, 15], [25, 10]]
+console.log(sumaDeArrays(a));
 
 
 
-};
+
+
+
 //-----------------------------------------------------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------------------------------------------------
@@ -243,41 +266,85 @@ const miGato = crearGato("Tino", 7);
 console.log(miGato);
 console.log(miGato.meow());
 
+//-----------------------------------------------------------------------------------------------------------------------
 
-function agregarPropiedad(objeto, property) {
   // Agrega una propiedad al objeto (argumento "objeto") con el valor `null`
   // Devuelve el objeto 
   // NOTA: El nombre de la propiedad no es "propiedad", el nombre es el valor del argumento llamado "property" (una cadena/string)
   // Tu código: 
   //objeto [property]= null;  
 
-}
+  function agregarPropiedad(objeto, property) {
+    objeto[property] = null;
+    return objeto;
+  }
+  
+  const objetoNuevo = {
+    nombre: "Dulce",
+  };
+  
+  agregarPropiedad(objetoNuevo, "propiedadNueva");
+  
+  console.log(objetoNuevo);
 
-function invocarMetodo(objeto, metodo) {
-  // "metodo" es una cadena que contiene el nombre de un método (funcion) en el objeto
-  // Invoca ese método
-  // Nada necesita ser devuelto ("returned")
-  // Tu código: 
 
-}
+//-----------------------------------------------------------------------------------------------------------------------
+
+  // function invocarMetodo(miobjeto, metodo) {
+  //   // "metodo" es una cadena que contiene el nombre de un método (funcion) en el objeto
+  //   // Invoca ese método
+  //   // Nada necesita ser devuelto ("returned")
+  //   // Tu código: 
+  //   const miobjeto = {
+  //     nombre: "Dulce",
+  //     saludar: function () {
+  //       console.log(`Hola, mi nombre es ${this.nombre}`);
+  //     },
+  //   };
+    
+  //   function invocarMetodo(miobjeto, metodo) {
+  //     miobjeto[metodo]();
+  //   }
+    
+  //   invocarMetodo(miobjeto, "saludar"); 
 
 
+//-----------------------------------------------------------------------------------------------------------------------
 
 function multiplicarNumeroDesconocidoPorCinco(objetoMisterioso) {
   // "objetoMisterioso" tiene una propiedad llamada "numeroMisterioso"
   // Multiplica el numeroMisterioso por 5 y devuelve el producto
   // Tu código:
 
-   
+    return objetoMisterioso.numeroMisterioso * 5;
   }
+  
+  console.log(multiplicarNumeroDesconocidoPorCinco(2)); 
+   
+//-----------------------------------------------------------------------------------------------------------------------
 
-function eliminarPropiedad(objeto, unaPropiedad) {
+
   // Elimina la propiedad de objeto cuyo nombre está pasado por el parametro unaPropiedad 
   // tip: tenes que usar bracket notation = Notacion de corchetes. 
   // Devuelve el objeto 
   // Tu código:
+  const objeto = {
+    nombre: "Dulce",
+    edad: 30,
+  };
+  
+  function eliminarPropiedad(objeto, unaPropiedad) {
+    delete objeto[unaPropiedad];
+    return objeto;
+  }
+  
+  console.log(eliminarPropiedad(objeto, "edad")); 
 
-}
+
+
+
+//-----------------------------------------------------------------------------------------------------------------------
+
 function nuevoUsuario(nombre, email, password) {
   // Crea un nuevo objeto con las propiedades coincidiendo con los 
   // argumentos que se pasan a la función
@@ -315,54 +382,83 @@ var usuario1 = {//use el usuario creado arriba para hacerlo
 
 console.log(tieneEmail(usuario1));
 
-//no se recuerdo si en alguna clase nos ensenastes usar la propiedad hasOwnProperty pero como ya 
-// ya te dije no estoy entendiendo mucho no me salia en si habia hecho esto 
-//for (i = 0; i < email.length; i++) {
- // if (email[i] === email) {
-   // return true
- // } {
-  //  if else (email[i] !== email){
-  //    return false
-  //  } 
-//};
-//console.log ()
- // lo comprobe y no me salia, entonces me puse a leer y leer y vi que habia un propiedad que servia no se si estara bien. ja
+//-----------------------------------------------------------------------------------------------------------------------
 
-function tienePropiedad(objeto, propiedad) {
+
   // Devuelve "true" si el objeto (parámetro "objeto") tiene una propiedad (key) 
   //cuyo nombre es igual al valor del argumento "propiedad"
   // "propiedad" es un string
   // De lo contrario, devuelve "false"
   // Tu código:
+  const objetoPrimero = {
+    nombre: "Dulce",
+    edad: 30,
+  };
+  function tienePropiedad(objetoPrimero, propiedad) {
+ 
+    return objetoPrimero[propiedad] !== undefined;
+  
+}  
+  console.log(tienePropiedad(objetoPrimero, "nombre"));
+  console.log(tienePropiedad(objetoPrimero, "apellido")); 
 
 
 
-}
+//-----------------------------------------------------------------------------------------------------------------------
 
-function verificarPassword(usuario, password) {
+
   // Comprueba si la "password" enviada coincide con la propiedad "password" del objeto "usuario"
   // Devuelve "true" si coinciden
   // De lo contrario, devuelve "false"
   // // Tu código: 
-
+  
+function verificarPassword(usuario, password) {
+return usuario.password === password;
 }
+
+const usuario2 = {
+  nombre: "Dulce",
+  mail: "dulcemaria@gmail.com",
+  password: "qwerty",
+}
+
+console.log(verificarPassword(usuario2, "qwerty"));
+
+//-----------------------------------------------------------------------------------------------------------------------
 
 function actualizarPassword(usuario, nuevaPassword) {
   // Reemplaza la contraseña existente en el objeto "usuario" con el valor de "nuevaPassword"
   // Devuelve el objeto
   // Tu código:
-
-
+usuario.password === nuevaPassword;
+return usuario
 }
+
+const usuario3 = {
+  nombre: "Maria Jose",
+  mail: "mariajose@gmail.com",
+  password: "qwerty1",
+}
+
+console.log(actualizarPassword(usuario3,"qwerty1"))
+//-----------------------------------------------------------------------------------------------------------------------
 
 function agregarAmigo(usuario, nuevoAmigo) {
   // "usuario" tiene una propiedad llamada "amigos" que es un array
   // Agrega "nuevoAmigo" al final de ese array
   // Devuelve el objeto "usuario"
   // // Tu código: 
-
-
+usuario.amigos.push(nuevoAmigo);
+return usuario;
 }
+const unUsuario = {
+  nombre: "lionel",
+  amigos: ["rodrigo", "angelito", "dibu"],
+}
+
+console.log(agregarAmigo(unUsuario, "juli"));
+
+//-----------------------------------------------------------------------------------------------------------------------
 
 function pasarUsuarioAPremium(usuarios) {
   // "usuarios" es un array de objetos "usuario"
@@ -378,28 +474,47 @@ function pasarUsuarioAPremium(usuarios) {
 }
 
 var usuarios = [
-    { nombre: "Pablo", estado: esPremium, },
-    { nombre: "Dulce", estado: esPremium, },
-    { nombre: "María", estado: esPremium, },
-    { nombre: "Agustin", estado: esPremium, },
+    { nombre: "Pablo", esPremium: true, },
+    { nombre: "Dulce", estado: true, },
+    { nombre: "María", estado: true, },
+    { nombre: "Agustin", estado: true, },
 ];
 
 console.log(pasarUsuarioAPremium(usuarios));
 
 
 
-function sumarLikesDeUsuario(usuario) {
+//-----------------------------------------------------------------------------------------------------------------------
+
+
   // "usuario" tiene una propiedad llamada "posts" que es un array
   // "posts" es un array de objetos "post"
   // Cada objeto "post" tiene una propiedad llamada "likes" que es un entero (int/integer)
   // Suma todos los likes de todos los objetos "post"
   // Devuelve la suma
   // Tu código: 
+  const usuario = {
+    nombre: "Dulce",
+    posts: [
+      { likes: 10 },
+      { likes: 20 },
+      { likes: 30 },
+    ],
+  };
+  
+  function sumarLikesDeUsuario(usuario) {
+    let suma = 0;
+    for (let i = 0; i < usuario.posts.length; i++) {
+      suma += usuario.posts[i].likes;
+    }
+    return suma;
+  }
+  
+  console.log(sumarLikesDeUsuario(usuario)); 
 
 
-}
+//-----------------------------------------------------------------------------------------------------------------------
 
-function agregarMetodoCalculoDescuento(producto) {
   // Agregar un método (función) al objeto "producto" llamado "calcularPrecioDescuento"
   // Este método debe multiplicar el "precio" del "producto" ("producto.precio" o "producto[precio]") y "porcentajeDeDescuento" para obtener el descuento
   // El método resta el descuento del precio y devuelve el precio con descuento
@@ -409,9 +524,25 @@ function agregarMetodoCalculoDescuento(producto) {
   // producto.porcentajeDeDescuento -> 0.2 (o simplemente ".2")
   // producto.calcularPrecioDescuento() -> 20 - (20 * 0.2)
   // Tu código: 
-}
+
+  const producto = {
+    nombre: "Camiseta",
+    precio: 20,
+    porcentajeDeDescuento: 0.2,
+  };
+  
+  function agregarMetodoCalculoDescuento(producto) {
+    producto.calcularPrecioDescuento = function () {
+      return producto.precio - producto.precio * producto.porcentajeDeDescuento;
+    };
+    return producto;
+  }
+  
+  console.log(agregarMetodoCalculoDescuento(producto).calcularPrecioDescuento())
 
 
+
+//-----------------------------------------------------------------------------------------------------------------------
 
 //-------------------------------------------Interacción con el DOM--------------------------------------------------------
 // En la página 'index.html' hay un elemento span cuyo texto es 'Aplicación creada por:'.
@@ -419,10 +550,15 @@ function agregarMetodoCalculoDescuento(producto) {
 // agregar tu nombre al final del texto actual. Ej: 'Aplicación creada por Franco'
 // Tu código acá: 
 
+const spanElement = document.querySelector("#createdBy");
+spanElement.innerHTML += " Dulce";
+
+
 //-----------------------------------------------------------------------------------------------------------------------
 
 // La función debe realizar lo siguiente:
 //    1) Crear un elemento 'div' y asignárselo a una variable denominada 'toDoShell'
+
 //    2) Asignarle a 'toDoShell' la clase 'toDoShell'
 //    3) Crear un elemento 'span' y asignárselo a una variable denominada 'toDoText'
 //    4) Utilizando el objeto toDo pasado como argumento, setear el 'toDoText' innerHTML
@@ -437,21 +573,24 @@ function agregarMetodoCalculoDescuento(producto) {
 
 function buildToDo(todo, index) { //todo es un objeto de la clase TODO. //index numerico 
   // Tu código acá:
+  
+    const toDoShell = document.createElement("div");
+    toDoShell.className = "toDoShell";
+  
+    const toDoText = document.createElement("span");
+    toDoText.innerHTML = todo.description;
+    toDoText.id = index;
+  
+    if (todo.complete) {
+      toDoText.classList.add("completeText");
+    }
+  
+    toDoShell.appendChild(toDoText);
+  
+    return toDoShell;
+  }
+  
 
-  // Consigna 3
-
-  // Consigna 4
-
-  // Consigna 5
-
-  // Consigna 6
-
-  // Consigna 7
-
-  // Consigna 8
-
-
-}
 
 //-----------------------------------------------------------------------------------------------------------------------
 
@@ -464,17 +603,24 @@ function buildToDo(todo, index) { //todo es un objeto de la clase TODO. //index 
 //  6) Abrir o en el caso de ya tenerlo abierto, recargar, la página
 
 function displayToDos() {
-  // Tu código acá:
-  //Paso 1; 
+  const toDoContainer = document.getElementById("toDoContainer");
+  toDoContainer.innerHTML = "";
 
-  // Paso 2: 
+  const toDoItems = [
+    { description: "tarea 1", complete: true },
+    { description: "tarea 2", complete: false },
+    { description: "tarea 3", complete: true },
+  ];
 
-  // Paso 3;
+  toDoItems.forEach((todo, index) => {
+    const toDoElement = buildToDo(todo, index);
+    toDoContainer.appendChild(toDoElement);
+  });
+}
 
-  //Paso 4; 
+displayToDos();
 
 
 
-};
 
 //---------------------------------------------------------------------------------------------------------------------
